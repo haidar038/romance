@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Romance Script by Haidar</title>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+        <style>
+            * {
+                box-sizing: border-box;
+                padding: 0;
+                margin: 0;
+                font-family: "Poppins";
+            }
+            body,
+            html {
+                height: 100%;
+            }
+            .container {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 100%;
+            }
+            #txt {
+                font-size: 20pt;
+                text-align: center;
+            }
+            #text,
+            .text {
+                font-size: 30pt;
+                font-weight: bold;
+                text-align: center;
+            }
+            #pesan {
+                text-align: center;
+                font-size: 10pt;
+            }
+            .love {
+                color: red;
+                text-shadow: 0 0 5px white;
+            }
+            .foot {
+                position: absolute;
+                bottom: 2%;
+                left: 50%;
+                transform: translate(-50%, 0);
+            }
+        </style>
+    </head>
+    <body onload="startTime()" id="bg">
+        <div class="container">
+            <div class="text">I <span class="love">❤</span> You <span id="text"></span></div>
+            <div id="pesan"></div>
+        </div>
+        <div id="txt"></div>
+        <div class="foot">by Haidar</div>
+
+        <script>
+            var nama = prompt("Siapa nama kamu?");
+            document.getElementById("text").innerHTML = nama;
+            function startTime() {
+                const today = new Date();
+                let h = today.getHours();
+                let m = today.getMinutes();
+                let s = today.getSeconds();
+                m = checkTime(m);
+                s = checkTime(s);
+                document.getElementById("txt").innerHTML = h + ":" + m + ":" + s;
+                setTimeout(startTime, 1000);
+
+                //18-19 night
+                if (h > 6 && h < 10) {
+                    document.getElementById("bg").style.backgroundColor = "#c2ffff";
+                    document.getElementById("pesan").innerHTML = "Selamat Pagi, jangan lupa sarapan dan semangat untuk hari ini ya!";
+                }
+                //20-21 night
+                else if (h > 10 && h < 15) {
+                    document.getElementById("bg").style.backgroundColor = "#fffec2";
+                    document.getElementById("pesan").innerHTML = "Udah siang aja nih. Jangan lupa makan siang ya!";
+                }
+                //22-4 night
+                else if (h > 15 && h < 18) {
+                    document.getElementById("bg").style.backgroundColor = "#ffae43";
+                    document.getElementById("pesan").innerHTML = "Gimana aktivitasnya hari ini? Masih tetep semangat kan? 🙂";
+                }
+                //9-17 day
+                else if (h > 18 && h < 22) {
+                    document.getElementById("bg").style.backgroundColor = "#2e4f94";
+                    document.getElementById("bg").style.color = "#fff";
+                    document.getElementById("pesan").innerHTML = "Selamat Malam. Jangan lupa makan malamnya ya😄";
+                }
+                //7-8 day
+                else if (h > 22 || h < 6) {
+                    document.getElementById("bg").style.backgroundColor = "#091931";
+                    document.getElementById("bg").style.color = "#fff";
+                    document.getElementById("pesan").innerHTML = "Udah jam segini nih, masih belum tidur ya? Kalo udah capek istirahat ya! 😊 Goodnight!";
+                } else {
+                    document.getElementById("bg").style.backgroundColor = "white";
+                }
+            }
+
+            function checkTime(i) {
+                if (i < 10) {
+                    i = "0" + i;
+                } // add zero in front of numbers < 10
+                return i;
+            }
+        </script>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.0/gsap.min.js"></script>
+        <script>
+            gsap.from(".text", { duration: 1.5, y: 150, ease: "elastic", opacity: 0 });
+        </script>
+    </body>
+</html>
